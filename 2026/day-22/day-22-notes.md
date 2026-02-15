@@ -3,7 +3,7 @@ Ans -   git add - bascially select what goes into next commit, it takes content 
         git commit -bascially take whats in the staging area and file content is saved blobs and tree structure (object)  
 
 <h2>What does the staging area do? Why doesn't Git just commit directly?</h2>
-Ans - staging are, it give us the control what goes in the next commit ,it gives us flexibity to correct mistake before commit.
+Ans - staging area, it give us the control what goes in the next commit ,it gives us flexibity to correct mistake before commit.
 
 <h2>What information does git log show you?</h2>
 <img width="1916" height="148" alt="Screenshot from 2026-02-15 09-54-02" src="https://github.com/user-attachments/assets/f885a61e-39e4-41cb-a420-ab49f230ed15" />
