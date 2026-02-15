@@ -1,4 +1,4 @@
-<h1> My commands aresanal for mastering Git</h1>
+<h1> My 🔫 for mastering Git</h1>
 
 <h2>Setup & Config</h2>
 
