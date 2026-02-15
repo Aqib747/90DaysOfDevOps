@@ -1,4 +1,4 @@
-<h3> My commands aresanal for mastering Git</h3>
+<h1> My commands aresanal for mastering Git</h1>
 
 <h2>Setup & Config</h2>
 
