@@ -1,10 +1,17 @@
-What is a branch in Git?
-Why do we use branches instead of committing everything to main?
-What is HEAD in Git?
-What happens to your files when you switch branches?
+<h2>What is a branch in Git?</h2>
 
 
-What is the difference between origin and upstream?
+<h2>why do we use branches instead of committing everything to main?</h2>
+
+<h2>What is HEAD in Git?</h2>        
+
+
+<h2>What happens to your files when you switch branches?</h2>        
+
+
+<h2>What is the difference between origin and upstream?</h2>
+
+
 🧠 First, forget the words origin and upstream
 
 Think only this:
