@@ -17,13 +17,33 @@ Observe the merge — did Git do a fast-forward merge or a merge commit?</h2>
 
 <h2>Now create another branch feature-signup, add commits to it — but also add a commit to main before merging
 Merge feature-signup into main — what happens this time?</h2>
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/53115a60-3fa8-4dfa-9d4c-736813d0b821" />
+. Fast forward merge - git realised master has no new commit since feature-signup branch created, this means it just can master pointer forward to the same commit feature-signup <br>
 
 
-Answer in your notes:
-What is a fast-forward merge?
-When does Git create a merge commit instead?
-What is a merge conflict? (try creating one intentionally by editing the same line in both branches)
-Task 2: Git Rebase — Hands-On
+
+<h1>Answer in your notes:</h1>
+<h2>What is a fast-forward merge?</h2>
+ Answer - A fast-forward merge happens when the branch you are merging has all the new commits ahead of the current branch, and the current branch has no new commits since the branch diverged.<br>
+
+In this case, Git does not create a merge commit. It simply moves the branch pointer forward to the latest commit of the feature branch.
+
+
+<h2>When does Git create a merge commit instead?</h2>
+ Answer -Git creates a merge commit (true three-way merge) when: <br><br>
+
+Both branches have independent commits since they diverged.<br>
+Git cannot just slide the pointer forward, because the histories need to be combined.<br>
+The merge commit has two parent commits — one from each branch.<br>
+This preserves the history of both branches.<br>
+
+<h2>What is a merge conflict? (try creating one intentionally by editing the same line in both branches)</h2>
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/31483a53-507a-4209-9ad7-38c9932a29b8" />
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/ef656ac2-7b2d-40fa-b133-9d4c4ebade4c" />
+
+
+<h1> Task 2: Git Rebase — Hands-On</h1>
+
 Create a branch feature-dashboard from main, add 2-3 commits
 While on main, add a new commit (so main moves ahead)
 Switch to feature-dashboard and rebase it onto main
