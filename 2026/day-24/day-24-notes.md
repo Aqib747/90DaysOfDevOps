@@ -1,13 +1,24 @@
-Challenge Tasks
-Task 1: Git Merge — Hands-On
+<h1>Challenge Tasks</h1>
 
-Create a new branch feature-login from main, add a couple of commits to it
+<h1>Task 1: Git Merge — Hands-On</h1>
+
+<h2>Create a new branch feature-login from main, add a couple of commits to it</h2>
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/62e6760d-a766-41e0-816c-79372e2c440b" />
+
+<h2>Switch back to main and merge feature-login into main
+Observe the merge — did Git do a fast-forward merge or a merge commit?</h2>
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/c6e09021-5cec-4c69-8d47-18be963f5fc9" />
+. Git explicitly says  "Merge made by 'ort' startergy"<br>
+. it did not say fast forward<br>
+. The ort strategy (new default since Git 2.34) handled the merge automatically<br>
+. This was a true merge commit (three-way merge), not a fast-forward, because both master and feature-login had independent commits when merged.<br>
 
 
-Switch back to main and merge feature-login into main
-Observe the merge — did Git do a fast-forward merge or a merge commit?
-Now create another branch feature-signup, add commits to it — but also add a commit to main before merging
-Merge feature-signup into main — what happens this time?
+<h2>Now create another branch feature-signup, add commits to it — but also add a commit to main before merging
+Merge feature-signup into main — what happens this time?</h2>
+
+
 Answer in your notes:
 What is a fast-forward merge?
 When does Git create a merge commit instead?
