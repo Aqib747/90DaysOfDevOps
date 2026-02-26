@@ -1,16 +1,3 @@
-# Day 25 – Git Reset vs Revert & Branching Strategies
-
-## Task
-
-You'll learn how to **undo mistakes** safely — one of the most important skills in Git. You'll also explore **branching strategies** used by real engineering teams to manage code at scale.
-
----
-
-## Expected Output
-- A markdown file: `day-25-notes.md` with your observations and answers
-- Continue updating `git-commands.md` in your `devops-git-practice` repo
-
----
 
 ## Challenge Tasks
 
