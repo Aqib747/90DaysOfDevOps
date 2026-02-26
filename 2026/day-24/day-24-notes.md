@@ -1,4 +1,4 @@
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/864788e7-de0f-4a94-8feb-1f9e839ba538" /><h1>Challenge Tasks</h1>
+
 
 <h1>Task 1: Git Merge — Hands-On</h1>
 
