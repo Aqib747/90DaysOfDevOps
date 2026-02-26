@@ -1,4 +1,4 @@
-<h1>Challenge Tasks</h1>
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/864788e7-de0f-4a94-8feb-1f9e839ba538" /><h1>Challenge Tasks</h1>
 
 <h1>Task 1: Git Merge — Hands-On</h1>
 
@@ -228,24 +228,206 @@ git blame will show:
 
 <h1>Task 4: Git Stash — Hands-On </h1>
 
-Start making changes to a file but do not commit
-Now imagine you need to urgently switch to another branch — try switching. What happens?
-Use git stash to save your work-in-progress
+<h2>Start making changes to a file but do not commit
+Now imagine you need to urgently switch to another branch — try switching. What happens?</h2>
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/a446f800-a8ad-4906-87c8-bc25a18a2298" />
+1️⃣ M dev.txt
+
+M = Modified
+
+You had uncommitted changes in dev.txt
+
+Those changes were not stashed or committed
+
+2️⃣ Switched to branch 'feature-profile'
+
+Git allowed the branch switch
+
+Your uncommitted changes moved with you to feature-profile
+
+👉 Git only blocks a switch if it would overwrite files in the target branch.
+Here, dev.txt was either:
+
+identical in both branches, or
+
+not conflicting
+
+So Git said: “Cool, I won’t lose anything — switching is safe.”
+
+⚠️ Why this is dangerous in real projects
+
+Now:
+
+Your WIP changes belong to main (mentally)
+
+But they are physically on feature-profile
+
+This can cause:
+
+Accidental commits to the wrong branch 😬
+
+Messy PRs
+
+“How did this change get here?” confusion
+
+<h2>Use git stash to save your work-in-progress
 Switch to another branch, do some work, switch back
 Apply your stashed changes using git stash pop
 Try stashing multiple times and list all stashes
-Try applying a specific stash from the list
+Try applying a specific stash from the list</h2>
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/b0cd33f1-f7cb-4da7-9821-1376b4dae56b" />
+🧠 Interview-ready explanation
 
+“Git stash names are generated using the last commit message, not the modified files. That’s why multiple stashes can show the same label even though they contain different changes. To avoid confusion, I use named stashes with git stash push -m.”
 
 <h1>Answer in your notes:</h1>
 What is the difference between git stash pop and git stash apply?
 When would you use stash in a real-world workflow?
-Task 5: Cherry Picking
+<h1> come back later <h1><br>
+
+<h1>Task 5: Cherry Picking</h1>
 Create a branch feature-hotfix, make 3 commits with different changes
 Switch to main
-Cherry-pick only the second commit from feature-hotfix onto main
-Verify with git log that only that one commit was applied
-Answer in your notes:
-What does cherry-pick do?
-When would you use cherry-pick in a real project?
-What can go wrong with cherry-picking?
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/f0453cdb-099f-4322-937b-c99f889920da" />
+
+
+
+
+<h1>Cherry-pick only the second commit from feature-hotfix onto main
+Verify with git log that only that one commit was applied</h1>
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/ca11d6ff-177e-4581-9d6c-def6a41ba946" />
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/5141bb96-eaf9-41e8-8d4e-12b7ee527305" />
+
+
+
+<h1>Answer in your notes:</h1>
+<h2>What does cherry-pick do?</h2>
+git cherry-pick takes ONE specific commit from another branch and applies it to your current branch as a NEW commit.
+
+It copies the changes, not the branch
+
+The commit gets a new hash
+
+The original commit still exists on the source branch
+
+<h2>When would you use cherry-pick in a real project?</h2>
+✅ 1️⃣ Urgent production hotfix (MOST COMMON)
+
+A bug is fixed in a feature branch, but you can’t merge the whole branch.
+
+👉 Cherry-pick just the fix into main.
+
+Example
+
+git cherry-pick <hotfix-commit>
+
+✅ 2️⃣ Backporting fixes to release branches
+
+You fix a bug in main but need it in:
+
+release/1.0
+
+release/1.1
+
+👉 Cherry-pick the same commit into each release branch.
+
+✅ 3️⃣ Isolating one good commit from messy history
+
+Feature branch has:
+
+WIP commits
+
+experiments
+
+half-baked ideas
+
+👉 Cherry-pick only the clean, correct commit.
+
+✅ 4️⃣ Recovering lost work
+
+You accidentally committed work on the wrong branch.
+
+👉 Cherry-pick it to the correct branch.
+
+✅ 5️⃣ Code review / testing scenarios
+
+QA wants to test only one fix, not the entire feature.
+
+👉 Cherry-pick the commit into a test branch.
+
+
+<h2>What can go wrong with cherry-picking?</h2>
+❌ 1️⃣ Conflicts (you experienced this)
+
+If the same file changed differently, Git may stop.
+
+Types:
+
+content conflict
+
+modify/delete conflict
+
+👉 Must be resolved manually.
+
+❌ 2️⃣ Duplicate commits in history
+
+Cherry-picked commits:
+
+Have new hashes
+
+Look like different commits
+
+This can cause:
+
+duplicate changes
+
+confusion during merges later
+
+❌ 3️⃣ Missing dependencies
+
+A commit may rely on:
+
+previous commits
+
+config changes
+
+schema updates
+
+Cherry-picking only one commit can break the build.
+
+❌ 4️⃣ Harder debugging & blame
+
+Same change exists in multiple branches with different hashes.
+
+git blame and history tracking become noisier.
+
+❌ 5️⃣ Cherry-pick chains = tech debt
+
+Too much cherry-picking can lead to:
+
+fragmented history
+
+merge nightmares later
+
+🔹 Cherry-pick vs Merge (quick clarity)
+Feature	Cherry-pick	Merge
+Scope	One commit	Whole branch
+History	Duplicates commit	Preserves history
+Risk	Missing dependencies	Safer
+Use case	Hotfix	Feature integration
+🧠 Golden rule (remember this)
+
+Cherry-pick is a scalpel, not a bulldozer.
+
+Use it:
+
+carefully
+
+sparingly
+
+intentionally
+
+💼 Interview-ready answer (30 seconds)
+
+“Git cherry-pick applies a specific commit from one branch onto another as a new commit. It’s commonly used for hotfixes, backporting fixes to release branches, or isolating a single change without merging an entire branch. The risks include conflicts, duplicate commits, and missing dependencies, so it should be used carefully.”
