@@ -156,16 +156,49 @@ You know exactly what you’re doing
 ### Task 2: Git Revert — Hands-On
 1. Make 3 commits (commit X, Y, Z)
 2. Revert commit Y (the middle one) — what happens?
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/7af6e290-8fc3-41b2-b972-056dc2b577cc" />
 3. Check `git log` — is commit Y still in the history?
+
+Yes
+
+
 4. Answer in your notes:
    - How is `git revert` different from `git reset`?
-   - Why is revert considered **safer** than reset for shared branches?
-   - When would you use revert vs reset?
+     
+## 🔄 Git Reset vs Git Revert (Core Difference)
+
+| Command | Rewrites History | Safe After Push | Use Case |
+|------|-----------------|----------------|---------|
+| `git reset` | ❌ Yes | ❌ No | Local cleanup |
+| `git revert` | ✅ No | ✅ Yes | Undo pushed commits |
+
+**Golden Rule (DevOps):**
+> If a commit is already pushed → **REVERT, don’t RESET**
+
+- Why is revert considered **safer** than reset for shared branches?
+   
+   -
+   Whhen would you use revert vs reset?
+| Scenario                  | Best Choice  |
+| ------------------------- | ------------ |
+| Bad commit already pushed | `git revert` |
+| CI/CD pipeline failure    | `git revert` |
+| Production rollback       | `git revert` |
+| Local unpushed mistake    | `git reset`  |
 
 ---
 
 ### Task 3: Reset vs Revert — Summary
 Create a comparison in your notes:
+## ⚖️ Git Revert vs Git Reset — Quick Comparison
+
+| Feature | `git revert` | `git reset` |
+|------|-------------|-------------|
+| Rewrites history | ❌ No | ✅ Yes |
+| Safe for pushed commits | ✅ Yes | ❌ No |
+| Needs force push | ❌ No | ✅ Yes |
+| Team friendly | ✅ Yes | ❌ No |
+| Production safe | ✅ Yes | ❌ No |
 
 | | `git reset` | `git revert` |
 |---|---|---|
@@ -190,8 +223,209 @@ Research the following branching strategies and document each in your notes with
    - Which strategy would you use for a startup shipping fast?
    - Which strategy would you use for a large team with scheduled releases?
    - Which one does your favorite open-source project use? (check any repo on GitHub)
+# 🌿 Branching Strategies – DevOps Mastery Guide
+
+Branching strategies define **how teams collaborate, integrate code, and release software safely and quickly**.
 
 ---
+
+## 1️⃣ GitFlow
+
+### 🔧 How it Works
+GitFlow uses **multiple long-lived branches**, each serving a specific purpose in the release lifecycle.
+
+### 🧱 Branches
+- `main` – Production-ready code
+- `develop` – Integration branch for features
+- `feature/*` – New feature development
+- `release/*` – Release preparation
+- `hotfix/*` – Emergency production fixes
+
+
+### 🏭 Where It’s Used
+- Large enterprises
+- Big teams
+- Products with **scheduled releases**
+
+### ✅ Pros
+- Clear structure
+- Controlled releases
+- Stable production branch
+- Easy role separation
+
+### ❌ Cons
+- Complex workflow
+- Slower delivery
+- Merge conflicts
+- Overkill for small teams
+
+### 🧠 DevOps Insight
+GitFlow works best with **strong CI/CD automation**.  
+Without automation, merge complexity increases.
+
+---
+
+## 2️⃣ GitHub Flow
+
+### 🔧 How it Works
+GitHub Flow is **simple and fast** with only one long-lived branch.
+
+- `main` is always deployable
+- All work happens in short-lived feature branches
+- Changes are merged via Pull Requests
+
+### 🔁 Flow Diagram
+
+### 🏭 Where It’s Used
+- Large enterprises
+- Big teams
+- Products with **scheduled releases**
+
+### ✅ Pros
+- Clear structure
+- Controlled releases
+- Stable production branch
+- Easy role separation
+
+### ❌ Cons
+- Complex workflow
+- Slower delivery
+- Merge conflicts
+- Overkill for small teams
+
+### 🧠 DevOps Insight
+GitFlow works best with **strong CI/CD automation**.  
+Without automation, merge complexity increases.
+
+---
+
+## 2️⃣ GitHub Flow
+
+### 🔧 How it Works
+GitHub Flow is **simple and fast** with only one long-lived branch.
+
+- `main` is always deployable
+- All work happens in short-lived feature branches
+- Changes are merged via Pull Requests
+
+### 🔁 Flow Diagram
+main ──●────●────●────●────▶
+\ \
+feature feature feature
+
+
+### 🏭 Where It’s Used
+- Startups
+- SaaS products
+- Continuous delivery teams
+
+### ✅ Pros
+- Simple and clean
+- Faster development
+- Easy onboarding
+- CI/CD friendly
+
+### ❌ Cons
+- Requires strong testing
+- Risky without discipline
+- No dedicated release branch
+
+### 🧠 DevOps Insight
+GitHub Flow **assumes**:
+- Automated tests
+- Code reviews
+- Frequent deployments
+
+---
+
+## 3️⃣ Trunk-Based Development
+
+### 🔧 How it Works
+All developers integrate changes **directly or near-directly** into `main`.
+
+- No long-lived branches
+- Feature branches last hours or days
+- Feature flags are commonly used
+
+### 🔁 Flow Diagram
+main ──●─●─●─●─●─●─●─▶
+
+
+### 🏭 Where It’s Used
+- High-scale engineering teams
+- Companies deploying multiple times per day
+- Mature DevOps organizations
+
+### ✅ Pros
+- No merge hell
+- Fastest delivery
+- Continuous integration by design
+- High deployment frequency
+
+### ❌ Cons
+- Requires excellent test coverage
+- Needs feature flags
+- High engineering discipline
+
+### 🧠 DevOps Insight
+This is the **end-game DevOps strategy**.  
+If CI fails, **everyone stops and fixes it**.
+
+---
+
+## ⚖️ Strategy Comparison
+
+| Strategy | Complexity | Delivery Speed | Best For |
+|--------|------------|----------------|----------|
+| GitFlow | High | Slow | Large enterprises |
+| GitHub Flow | Medium | Fast | Startups, SaaS |
+| Trunk-Based Development | Low (concept) / High (discipline) | Fastest | Mature DevOps teams |
+
+---
+
+## 🎯 Strategy Selection Answers
+
+### 🚀 Startup Shipping Fast
+**Recommended:** GitHub Flow  
+**Reason:** Simple, fast, minimal process, easy CI/CD integration
+
+### 🏢 Large Team with Scheduled Releases
+**Recommended:** GitFlow  
+**Reason:** Controlled releases, clear stabilization phase
+
+### 🌍 Open-Source Projects
+**Common Choice:** GitHub Flow (or Trunk-like)  
+**Reason:** PR-based workflow, `main` always deployable
+
+---
+
+## 🧠 How a DevOps Engineer Chooses a Strategy
+
+A DevOps engineer evaluates:
+1. Deployment frequency
+2. CI/CD maturity
+3. Team size
+4. Stability requirements
+
+Then chooses the strategy accordingly.
+
+---
+
+## 🧠 One-Line Memory Rules
+
+- **GitFlow** → Control & predictability  
+- **GitHub Flow** → Speed & simplicity  
+- **Trunk-Based Development** → Continuous delivery excellence  
+
+---
+
+## 💼 Interview-Ready Answer
+
+> “For startups, I prefer GitHub Flow due to its simplicity and fast delivery.  
+> For large teams with scheduled releases, GitFlow provides better structure.  
+> In mature DevOps environments with strong CI/CD, Trunk-Based Development is the most efficient.”
+
+----------------------------------------------------------------------------------------------------------
 
 ### Task 5: Git Commands Reference Update
 Update your `git-commands.md` to cover everything from Days 22–25:
