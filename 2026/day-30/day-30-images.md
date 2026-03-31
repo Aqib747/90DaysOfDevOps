@@ -220,20 +220,65 @@ docker image inspect alpine | grep -A 20 "RootFS"
 ` after each step — observe the state changes.
 
 ---
+## Task 3: Container Lifecycle
+Practice the full lifecycle on one container:
+
+Create a container (without starting it)
+Start the container
+Pause it and check status
+Unpause it
+Stop it
+Restart it
+Kill it
+Remove it
+Check docker ps -a after each step — observe the state changes.
+---
+<img width="1854" height="1048" alt="image" src="https://github.com/user-attachments/assets/bf4cb7b2-6ea8-4084-9a60-93d585a6f51b" />
+<img width="1854" height="1048" alt="image" src="https://github.com/user-attachments/assets/474a22ab-d64f-46b9-9b8d-e0ec0c699942" />
+---
 
 ## Task 4: Working with Running Containers
 
 1. Run an Nginx container in detached mode
+<img width="1889" height="199" alt="image" src="https://github.com/user-attachments/assets/cab2f256-2f74-4683-a6e2-3b1e0e1a4cb8" />
+
 2. View its **logs**
-3. View **real-time logs** (follow mode)
-4. **Exec** into the container and look around the filesystem
-5. Run a single command inside the container without entering it
-6. **Inspect** the container — find its IP address, port mappings, and mounts
+3. <img width="1889" height="516" alt="image" src="https://github.com/user-attachments/assets/8bd17ba8-947e-4d5a-b96d-843abd868ff9" />
+
+4. View **real-time logs** (follow mode
+<img width="1889" height="625" alt="image" src="https://github.com/user-attachments/assets/74440426-9c0a-4066-ac1e-3fc7f2fa2346" />
+
+5. **Exec** into the container and look around the filesystem
+<img width="1912" height="1070" alt="image" src="https://github.com/user-attachments/assets/c10b8037-e29a-4a0e-905b-50f423f103f7" />
+
+6. Run a single command inside the container without entering it
+<img width="1912" height="439" alt="image" src="https://github.com/user-attachments/assets/d18f7b84-58b6-49b2-ac9a-0556498d92ee" />
+
+
+The difference
+CommandWhat it doesdocker exec -it nginx-my bashOpens interactive shell — you're insidedocker exec nginx-my ls /Runs one command, prints output, done
+-it = interactive terminal (for when you want to stay inside)
+No -it = fire and forget (for quick checks and scripts)
+This is how DevOps scripts and CI/CD pipelines interact with containers — they never "go inside", they just fire commands from outside.
+
+
+7. **Inspect** the container — find its IP address, port mappings, and mounts
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/8ff456c4-c25a-4b0e-88b7-c0c31836a05b" />
+
 
 ---
 
-### Task 5: Cleanup
-1. Stop all running containers in one command
-2. Remove all stopped containers in one command
-3. Remove unused images
-4. Check how much disk space Docker is using
+## Task 5: Cleanup
+**1. Stop all running containers in one command**
+<img width="1912" height="250" alt="image" src="https://github.com/user-attachments/assets/72ce84bc-0ea0-4fcf-9f3d-71aa71e3c370" />
+
+**2. Remove all stopped containers in one command**
+<img width="1912" height="746" alt="image" src="https://github.com/user-attachments/assets/6e3c252c-bbf0-464a-b8e7-252d892154b9" />
+
+**3. Remove unused images**
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/5763e24f-3680-46eb-93e9-85fccff14198" />
+
+**4. Check how much disk space Docker is using**
+<img width="1912" height="182" alt="image" src="https://github.com/user-attachments/assets/6c82689a-ab93-4dc8-8385-e8fdf7730819" />
+
