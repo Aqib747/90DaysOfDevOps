@@ -164,12 +164,6 @@ The daemon spun up a container from that image. The container ran its one job â€
 
 **5.Stop and remove a container**
 <img width="1900" height="410" alt="image" src="https://github.com/user-attachments/assets/98aaaeb2-8923-459a-808a-a4b4bb7ae3c7" />
-
-Task 4: Explore
-Run a container in detached mode â€” what's different?
-Give a container a custom name
-Map a port from the container to your host
-Check logs of a running container
-Run a command inside a running container
+---
 
 
