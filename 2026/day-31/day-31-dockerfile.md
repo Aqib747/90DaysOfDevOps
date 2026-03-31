@@ -37,3 +37,12 @@ Create a new Dockerfile that uses **all** of these instructions:
 - `CMD` — default command
 
 Build and run it. Understand what each line does.
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/81fe57c1-816b-48ed-acaf-c9317b87e3d0" />
+Dockerfile :
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/236653b3-4152-4633-b964-fd504418c9a4" />
+Running contaner
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/f009f977-48c0-46bc-9438-9f4f81b1cf9f" />
+
+---
+
+
