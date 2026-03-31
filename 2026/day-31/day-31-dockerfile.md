@@ -45,4 +45,33 @@ Running contaner
 
 ---
 
+## Task 3: CMD vs ENTRYPOINT
+Create an image with CMD ["echo", "hello"] — run it, then run it with a custom command. What happens?
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/c85f49ba-c48e-4205-909c-a6e847dabd82" />
 
+
+Create an image with ENTRYPOINT ["echo"] — run it, then run it with additional arguments. What happens?
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/354a8dfc-dad0-4e7d-969b-56dc3623a424" />
+
+Write in your notes: When would you use CMD vs ENTRYPOINT?
+
+
+Use CMD when
+
+Your container can do multiple things
+You want users to easily swap the command
+Example: a utility image where someone might run bash, python, or sh
+
+Use ENTRYPOINT when
+
+Your container has one specific job
+You want the command to always run no matter what
+Example: nginx, python app.py, java -jar app.jar
+
+Use both together when
+
+You have a fixed executable (ENTRYPOINT) but want a sensible default argument (CMD)
+Example: a backup tool where ENTRYPOINT is the tool and CMD is --help by default
+
+dockerfileENTRYPOINT ["python", "app.py"]   # always runs python app.py
+CMD ["--port", "8080"]            # default port, easily overridden
