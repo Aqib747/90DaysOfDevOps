@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Learning DevOps</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background-color: #0d1117;
+    color: #c9d1d9;
+    font-family: 'Courier New', monospace;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+
+  .terminal {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 750px;
+    overflow: hidden;
+    box-shadow: 0 0 40px rgba(0,255,136,0.08);
+  }
+
+  .terminal-bar {
+    background: #21262d;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid #30363d;
+  }
+
+  .dot { width: 13px; height: 13px; border-radius: 50%; }
+  .dot.red    { background: #ff5f57; }
+  .dot.yellow { background: #febc2e; }
+  .dot.green  { background: #28c840; }
+
+  .terminal-title {
+    color: #8b949e;
+    font-size: 13px;
+    margin-left: 8px;
+  }
+
+  .terminal-body {
+    padding: 1.8rem 2rem;
+    line-height: 1.8;
+    font-size: 14px;
+  }
+
+  .prompt { color: #00ff88; }
+  .cmd    { color: #79c0ff; }
+  .output { color: #c9d1d9; margin-left: 1.5rem; }
+  .comment { color: #6e7681; }
+  .highlight { color: #ffa657; font-weight: bold; }
+  .success { color: #3fb950; }
+  .tag {
+    display: inline-block;
+    background: #0d419d;
+    color: #79c0ff;
+    border: 1px solid #1f6feb;
+    border-radius: 4px;
+    padding: 1px 8px;
+    font-size: 12px;
+    margin: 2px;
+  }
+
+  .divider {
+    border: none;
+    border-top: 1px solid #30363d;
+    margin: 1.2rem 0;
+  }
+
+  .section-title {
+    color: #8b949e;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 0.8rem;
+  }
+
+  .roadmap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.4rem;
+    margin-left: 1.5rem;
+  }
+
+  .roadmap-item { display: flex; align-items: center; gap: 8px; }
+  .roadmap-item.done   .icon { color: #3fb950; }
+  .roadmap-item.active .icon { color: #ffa657; }
+  .roadmap-item.todo   .icon { color: #6e7681; }
+
+  .cursor {
+    display: inline-block;
+    width: 9px;
+    height: 15px;
+    background: #00ff88;
+    animation: blink 1s step-end infinite;
+    vertical-align: middle;
+    margin-left: 2px;
+  }
+
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+  .footer {
+    margin-top: 1.5rem;
+    color: #6e7681;
+    font-size: 12px;
+    text-align: center;
+  }
+
+  .footer span { color: #00ff88; }
+</style>
+</head>
+<body>
+
+<div class="terminal">
+  <div class="terminal-bar">
+    <div class="dot red"></div>
+    <div class="dot yellow"></div>
+    <div class="dot green"></div>
+    <span class="terminal-title">pc@nginx-container ~ devops-journey</span>
+  </div>
+
+  <div class="terminal-body">
+
+    <div>
+      <span class="prompt">$</span>
+      <span class="cmd"> whoami</span>
+    </div>
+    <div class="output"><span class="highlight">PC</span> — Junior DevOps Engineer in training 🚀</div>
+
+    <br>
+
+    <div>
+      <span class="prompt">$</span>
+      <span class="cmd"> cat status.txt</span>
+    </div>
+    <div class="output">
+      <span class="success">✔</span> Docker installed and running<br>
+      <span class="success">✔</span> First container deployed (nginx)<br>
+      <span class="success">✔</span> Custom HTML served from inside a container<br>
+      <span class="success">✔</span> Container lifecycle mastered<br>
+    </div>
+
+    <hr class="divider">
+
+    <div class="section-title"># DevOps Roadmap</div>
+    <div class="roadmap">
+      <div class="roadmap-item done">
+        <span class="icon">✔</span> Linux basics
+      </div>
+      <div class="roadmap-item done">
+        <span class="icon">✔</span> Docker containers
+      </div>
+      <div class="roadmap-item active">
+        <span class="icon">▶</span> Dockerfile & images
+      </div>
+      <div class="roadmap-item todo">
+        <span class="icon">○</span> Docker Compose
+      </div>
+      <div class="roadmap-item todo">
+        <span class="icon">○</span> CI/CD pipelines
+      </div>
+      <div class="roadmap-item todo">
+        <span class="icon">○</span> Kubernetes
+      </div>
+      <div class="roadmap-item todo">
+        <span class="icon">○</span> Cloud (AWS/GCP)
+      </div>
+      <div class="roadmap-item todo">
+        <span class="icon">○</span> Infrastructure as Code
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <div>
+      <span class="prompt">$</span>
+      <span class="cmd"> docker ps</span>
+    </div>
+    <div class="output" style="font-size:12px;">
+      CONTAINER ID &nbsp; IMAGE &nbsp; STATUS &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NAMES<br>
+      <span class="success">8a670327168b &nbsp; nginx &nbsp; Up (healthy) &nbsp; nginx-my</span>
+    </div>
+
+    <hr class="divider">
+
+    <div class="section-title"># Stack I'm learning</div>
+    <div style="margin-left:1.5rem">
+      <span class="tag">Docker</span>
+      <span class="tag">Linux</span>
+      <span class="tag">nginx</span>
+      <span class="tag">Git</span>
+      <span class="tag">CI/CD</span>
+      <span class="tag">Kubernetes</span>
+      <span class="tag">Terraform</span>
+      <span class="tag">AWS</span>
+    </div>
+
+    <br>
+
+    <div>
+      <span class="prompt">$</span>
+      <span class="cmd"> echo "Keep building. Keep shipping."</span>
+    </div>
+    <div class="output">
+      Keep building. Keep shipping. <span class="cursor"></span>
+    </div>
+
+  </div>
+</div>
+
+<div class="footer">
+  Served from inside a Docker container &nbsp;·&nbsp;
+  <span>nginx:latest</span> &nbsp;·&nbsp;
+  Port 8081
+</div>
+
+</body>
+</html>
