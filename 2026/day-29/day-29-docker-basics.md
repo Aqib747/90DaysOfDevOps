@@ -109,3 +109,67 @@ A storage and distribution system for images. **Docker Hub** is the public defau
 | **Daemon** | Background service that manages Docker objects |
 | **Registry** | Storage system for Docker images (public or private) |
 | **Volume** | Persistent storage attached to a container |
+
+## Task 2: Install Docker
+1.Install Docker on your machine (or use a cloud instance)
+2.Verify the installation
+<img width="1915" height="809" alt="image" src="https://github.com/user-attachments/assets/dd454464-8de0-4d63-ab08-6387e3756e5e" />
+
+
+**3.Run the hello-world container4.Read the output carefully — it explains what just happened
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/a2ab6d08-b17d-4aac-b6ec-3e6d501440fc" />
+
+## Docker `hello-world` — What Just Happened?
+
+---
+
+`docker run hello-world` — Step by Step
+
+**1. Image not found locally**
+```
+Unable to find image 'hello-world:latest' locally
+```
+The Docker daemon checked your local image cache — nothing there. So it went to Docker Hub.
+
+**2. Pulled the image from Docker Hub**
+```
+4f55086f7dd0: Pull complete
+```
+The daemon downloaded the `hello-world` image layer by layer (just one layer here since it's tiny). The digest is a SHA256 hash — a fingerprint guaranteeing you got the exact right image.
+
+**3. Created and ran a container**
+The daemon spun up a container from that image. The container ran its one job — printing the "Hello from Docker!" message — and then **exited immediately**. `hello-world` has nothing to keep running.
+
+---
+
+# Task 3: Run Real Containers
+
+**1. Run an Nginx container and access it in your browser**
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/f37e9276-30a6-4078-9937-47b8f85ea36c" />
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/6fa47332-c3ab-4db1-b817-84c7cc28829b" />
+
+**2 Run an Ubuntu container in interactive mode — explore it like a mini Linux machine**
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/48071dae-43be-4632-9970-ea6d8686a81b" />
+
+
+**3.List all running containers**
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/510b4223-f5fd-4aca-9fe9-daed8a75fc57" />
+
+
+**4.List all containers (including stopped ones)**
+<img width="1900" height="438" alt="image" src="https://github.com/user-attachments/assets/6e60f4bc-0536-43b4-870a-f37f8c47ede9" />
+
+
+**5.Stop and remove a container**
+<img width="1900" height="410" alt="image" src="https://github.com/user-attachments/assets/98aaaeb2-8923-459a-808a-a4b4bb7ae3c7" />
+
+Task 4: Explore
+Run a container in detached mode — what's different?
+Give a container a custom name
+Map a port from the container to your host
+Check logs of a running container
+Run a command inside a running container
+
+
