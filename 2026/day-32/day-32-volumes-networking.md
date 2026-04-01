@@ -68,13 +68,35 @@ Yes data is still there .
 
 ---
 
-### Task 3: Bind Mounts
+## Task 3: Bind Mounts
+
 1. Create a folder on your host machine with an `index.html` file
+<img width="891" height="549" alt="image" src="https://github.com/user-attachments/assets/735400ad-44ed-473d-a36f-a7a1456a795d" />
+
 2. Run an Nginx container and **bind mount** your folder to the Nginx web directory
+<img width="1933" height="504" alt="image" src="https://github.com/user-attachments/assets/9d214342-86b9-4ae5-82bc-3d890f3a6fc1" />
+
 3. Access the page in your browser
-4. Edit the `index.html` on your host — refresh the browser
+<img width="1916" height="1076" alt="image" src="https://github.com/user-attachments/assets/1d94f0c1-8cf3-46b3-b625-8ee7c17192af" />
+
+5. Edit the `index.html` on your host — refresh the browser
+<img width="1916" height="1076" alt="image" src="https://github.com/user-attachments/assets/9bdee1d5-3f4c-4911-98af-4bccd1d125d9" />
+
+hence proved
+<img width="1899" height="447" alt="image" src="https://github.com/user-attachments/assets/36fe1136-3074-4d83-8070-c3ac65c9594c" />
+
 
 Write in your notes: What is the difference between a named volume and a bind mount?
+
+Named Volume — Docker creates and manages the storage. You just give it a name. Docker decides where it lives on disk (/var/lib/docker/volumes/). You can't easily see or edit the files directly. Best for databases and production data where you just need persistence.
+bash-v mysql-data:/var/lib/mysql
+Bind Mount — You point Docker to a specific folder on your machine. Docker just uses it directly. You can see, edit, and access the files normally like any other folder. Best for development where you want live editing.
+bash-v /home/pc/Downloads:/usr/share/nginx/html
+
+one line difference:
+
+Named Volume  → Docker manages the folder  → use in production
+Bind Mount    → You manage the folder      → use in development
 
 ---
 
