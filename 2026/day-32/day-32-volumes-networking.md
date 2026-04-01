@@ -34,12 +34,35 @@ The image (mysql:latest) stays but it has no data — it's just the blueprint.
 A new container from the same image starts completely fresh every time.
 ---
 
-### Task 2: Named Volumes
+##Task 2: Named Volumes
+
+
 1. Create a named volume
-2. Run the same database container, but this time **attach the volume** to it
+<img width="1923" height="1055" alt="image" src="https://github.com/user-attachments/assets/40f01997-40d5-46bc-92ad-17ccdc06ae4b" />
+
+do2. Run the same database container, but this time **attach the volume** to it
+
+-v sqlvolume:/var/opt/mssql: This is the key part. It mounts the named volume sqlvolume to the /var/opt/mssql
+directory inside the container,where SQL Server stores its data files. If sqlvolume doesn't exist, Docker creates it automatically.
+
+
 3. Add some data, stop and remove the container
+Added a database - 
+<img width="1923" height="1055" alt="image" src="https://github.com/user-attachments/assets/ea20e032-a990-4de5-8394-b0bb6155154d" />
+
+removed the container -
+<img width="1923" height="262" alt="image" src="https://github.com/user-attachments/assets/ec3add45-603d-4c03-a504-55e1e4c7bd31" />
+
+
 4. Run a brand new container with the **same volume**
+<img width="1933" height="174" alt="image" src="https://github.com/user-attachments/assets/25c84647-5c8b-4978-aed6-1a7054c051d9" />
+
+
+
 5. Is the data still there?
+Yes data is still there .
+<img width="1933" height="1056" alt="image" src="https://github.com/user-attachments/assets/97a92d6a-cd0d-47c2-954e-5ba41174ba5e" />
+
 
 **Verify:** `docker volume ls`, `docker volume inspect`
 
