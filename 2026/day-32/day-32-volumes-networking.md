@@ -11,12 +11,27 @@ Containers are ephemeral — they lose data when removed. And by default, contai
 
 ### Task 1: The Problem
 1. Run a Postgres or MySQL container
+<img width="1910" height="452" alt="image" src="https://github.com/user-attachments/assets/f40bab98-7e10-4b9d-a6c3-07f8957f4b24" />
+
 2. Create some data inside it (a table, a few rows — anything)
+<img width="1923" height="987" alt="image" src="https://github.com/user-attachments/assets/d27cd53a-cc19-4376-b1bc-5d28bd4b8752" />
+
 3. Stop and remove the container
+<img width="1923" height="277" alt="image" src="https://github.com/user-attachments/assets/a95770b0-599d-4642-a8c7-9b528dfd9010" />
+
 4. Run a new one — is your data still there?
+No the database what we have created is gone.
+<img width="1923" height="1055" alt="image" src="https://github.com/user-attachments/assets/83894c88-9134-441a-8ded-d31a5a543abd" />
+
 
 Write what happened and why.
 
+```
+Container filesystem is ephemeral.
+
+When you rm a container → its writable layer is deleted → all data inside it vanishes.
+The image (mysql:latest) stays but it has no data — it's just the blueprint.
+A new container from the same image starts completely fresh every time.
 ---
 
 ### Task 2: Named Volumes
