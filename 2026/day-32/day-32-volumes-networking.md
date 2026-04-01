@@ -88,8 +88,10 @@ hence proved
 
 Write in your notes: What is the difference between a named volume and a bind mount?
 
-Named Volume — Docker creates and manages the storage. You just give it a name. Docker decides where it lives on disk (/var/lib/docker/volumes/). You can't easily see or edit the files directly. Best for databases and production data where you just need persistence.
+Named Volume — Docker creates and manages the storage. You just give it a name. Docker decides where it lives on disk (/var/lib/docker/volumes/). 
+You can't easily see or edit the files directly. Best for databases and production data where you just need persistence.
 bash-v mysql-data:/var/lib/mysql
+
 Bind Mount — You point Docker to a specific folder on your machine. Docker just uses it directly. You can see, edit, and access the files normally like any other folder. Best for development where you want live editing.
 bash-v /home/pc/Downloads:/usr/share/nginx/html
 
