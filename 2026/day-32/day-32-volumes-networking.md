@@ -26,7 +26,7 @@ No the database what we have created is gone.
 
 Write what happened and why.
 
-```
+
 Container filesystem is ephemeral.
 
 When you rm a container → its writable layer is deleted → all data inside it vanishes.
