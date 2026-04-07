@@ -17,7 +17,8 @@ Verify the version
 
 5. Stop it with `docker compose down`
 <img width="922" height="301" alt="image" src="https://github.com/user-attachments/assets/6a5bd587-ddf8-4075-83f4-7ad936599e08" />
----
+
+
 ## Task 3: Two-Container Setup
 Write a `docker-compose.yml` that runs:
 - A **WordPress** container
