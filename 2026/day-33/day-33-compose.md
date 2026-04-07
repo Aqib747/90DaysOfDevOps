@@ -41,6 +41,16 @@ Start it, access WordPress in your browser, and set it up.
 test user still persist
 <img width="1888" height="1030" alt="image" src="https://github.com/user-attachments/assets/3d6bed57-f139-48fa-8710-f137731712d6" />
 
-
-
 ---
+
+
+## Task 5: Environment Variables
+1. Add environment variables directly in your `docker-compose.yml
+<img width="1888" height="1030" alt="image" src="https://github.com/user-attachments/assets/dc1e871d-4635-4a3e-ab1e-f856c839cf84" />
+
+2. Create a `.env` file and reference variables from it in your compose file
+<img width="1888" height="1030" alt="image" src="https://github.com/user-attachments/assets/417f95cf-021f-40cf-bfc5-22ecf2b2d6eb" />
+
+3. Verify the variables are being picked up
+<img width="1888" height="1030" alt="image" src="https://github.com/user-attachments/assets/8eb950d8-5eb1-4d62-a86e-45b863071295" />
+
