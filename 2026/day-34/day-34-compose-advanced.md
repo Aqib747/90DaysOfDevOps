@@ -63,8 +63,22 @@ Dockerfile
 ---
 ## Task 2: depends_on & Healthchecks
 1. Add `depends_on` to your compose file so the app starts **after** the database
+
+  <img width="1888" height="1030" alt="image" src="https://github.com/user-attachments/assets/9465a15f-3500-42c1-8acb-4299f1147101" />
+
 2. Add a **healthcheck** on the database service
 3. Use `depends_on` with `condition: service_healthy` so the app waits for the database to be truly ready, not just started
 
 **Test:** Bring everything down and up — does the app wait for the DB?
+
+Does wait for th heealth check to be sucessfull
+<img width="1888" height="658" alt="image" src="https://github.com/user-attachments/assets/4dc57584-bd71-4bd2-8b63-8182a835b96c" />
+
+---
+## Task 3: Restart Policies
+1. Add `restart: always` to your database service
+2. Manually kill the database container — does it come back?
+3. Try `restart: on-failure` — how is it different?
+4. Write in your notes: When would you use each restart policy?
+
 
