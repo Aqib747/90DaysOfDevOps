@@ -1,0 +1,66 @@
+services:
+  web:
+    build: .
+    
+    ports:
+      - 5000:5000
+    networks:
+      - frontend
+      - backend
+  
+    environment:
+      DB_HOST: postgress
+      DB_NAME: appdb
+      DB_USER: appuser
+      DB_PASSWORD: apppass
+  
+    
+    depends_on:
+       postgress:
+        condition: service_healthy   
+       redis:
+        condition: service_started
+    labels:
+      app: flask-stack
+      tier: web
+  
+  postgress:
+    image: postgres:15
+    
+    restart: always
+     
+    networks:
+      - backend
+    environment:
+      POSTGRES_USER: appuser
+      POSTGRES_PASSWORD: apppass
+      POSTGRES_DB: appdb
+    
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U appuser -d appdb"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      
+    
+    volumes:
+      - pogrs_data:/var/lib/postgresql/data
+
+    labels:
+      app: flask-stack
+      tier: database
+
+  redis:
+    image: redis:alpine 
+    networks: 
+      - backend
+    labels:
+      app: flask-app
+      tier: database
+
+volumes:
+    pogrs_data:
+
+networks:
+  frontend:
+  backend:
