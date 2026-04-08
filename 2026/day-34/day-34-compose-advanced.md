@@ -78,7 +78,149 @@ Does wait for th heealth check to be sucessfull
 ## Task 3: Restart Policies
 1. Add `restart: always` to your database service
 2. Manually kill the database container — does it come back?
+<img width="1595" height="1015" alt="image" src="https://github.com/user-attachments/assets/0ee2338d-a784-42d1-a49d-62d062bf34dd" />
+
 3. Try `restart: on-failure` — how is it different?
 4. Write in your notes: When would you use each restart policy?
+
+## Restart Policies
+
+### When to use each:
+
+| Policy | Use When |
+|--------|----------|
+| `no` | Development/testing — you want containers to stay dead so you can debug |
+| `always` | Critical services like databases, caches — must always be running |
+| `on-failure` | Worker jobs — restart if they crash but not if you stop them manually |
+| `unless-stopped` | Production web apps — restart automatically but respect manual stops |
+
+### Difference between `always` and `unless-stopped`:
+
+| Situation | `always` | `unless-stopped` |
+|-----------|----------|-----------------|
+| Container crashes | ✅ Restarts | ✅ Restarts |
+| Machine reboots | ✅ Restarts | ❌ Stays stopped |
+| `docker compose down` | ❌ Respects stop | ❌ Respects stop |
+| `kill -9` inside container | ✅ Restarts | ✅ Restarts |
+
+### Recommendation:
+- Database → `always` (must never be down)
+- Web app → `unless-stopped` (respect manual deploys)
+- Worker/job → `on-failure` (only restart on crashes)
+
+---
+
+### Task 4: Custom Dockerfiles in Compose
+1. Instead of using a pre-built image for your app, use `build:` in your compose file to build from a Dockerfile
+<img width="684" height="214" alt="image" src="https://github.com/user-attachments/assets/5031c9ac-7013-4d38-ab76-08fb3ff251d7" />
+
+2. Make a code change in your app
+<img width="1006" height="370" alt="image" src="https://github.com/user-attachments/assets/a25af3a2-5ee0-49a1-b550-7fca41bdb3b0" />
+
+3. Rebuild and restart with one command
+<img width="1017" height="174" alt="image" src="https://github.com/user-attachments/assets/6e635af9-7209-44ac-b908-91aaa5fa37ce" />
+
+
+---
+
+### Task 5: Named Networks & Volumes
+1. Define **explicit networks** in your compose file instead of relying on the default
+<img width="673" height="124" alt="image" src="https://github.com/user-attachments/assets/461ce687-45b2-4894-9431-dcc198221444" />
+
+2. Define **named volumes** for database data
+<img width="673" height="124" alt="image" src="https://github.com/user-attachments/assets/e88c487b-2eac-4874-b19b-d2af5b6cca60" />
+
+3. Add **labels** to your services for better organization
+<img width="1109" height="107" alt="image" src="https://github.com/user-attachments/assets/0b2d659a-7496-4d50-81b5-d36157e96ca8" />
+
+
+## Task 5: Named Networks & Volumes
+
+### 1. Named Networks
+
+By default Compose puts ALL services on one shared network — every service can talk to every other service. This is a security risk in production.
+
+**Solution — separate networks:**
+
+```
+frontend network → web faces the outside world
+backend network  → db and cache are hidden inside
+```
+
+```yaml
+networks:
+  frontend:   # web faces the outside world
+  backend:    # db and cache are hidden inside
+```
+
+- `web` is on BOTH networks — talks to browser AND database
+- `postgress` and `redis` are ONLY on backend — isolated from outside
+
+**Think of it like a restaurant:**
+- Frontend = dining area (customers can access)
+- Backend = kitchen (only staff can access)
+
+---
+
+### 2. Named Volumes
+
+```yaml
+volumes:
+  pgdata:
+```
+
+| | Anonymous Volume | Named Volume |
+|--|-----------------|--------------|
+| Name | Random ID | `pgdata` — human readable |
+| Reuse | Hard to find | Easy to reference |
+| Backup | Hard to identify | Easy to target |
+| Sharing | Can't share | Can share between services |
+
+```bash
+docker volume ls           # see pgdata clearly
+docker volume inspect pgdata  # inspect it
+```
+
+---
+
+### 3. Labels
+
+Labels are metadata tags attached to containers — like sticky notes. They don't affect how containers run.
+
+```yaml
+labels:
+  app: flask-stack
+  tier: web
+```
+
+**Why useful in production:**
+
+```bash
+# filter containers by label
+docker ps --filter "label=tier=database"
+
+# find all containers belonging to your app
+docker ps --filter "label=app=flask-stack"
+```
+
+In large systems with 50+ containers, labels help you:
+- Filter and find specific containers quickly
+- Monitoring tools like Prometheus use labels to group metrics
+- Log aggregators use labels to route logs to the right place
+
+---
+
+### The Big Picture
+BROWSER
+↓
+[frontend network]
+↓
+[web] ← labeled: tier=web
+↓
+[backend network]
+↓
+[postgress] ← labeled: tier=database    [redis] ← labeled: tier=cache
+↓
+[pgdata volume] ← named, persistent
 
 
